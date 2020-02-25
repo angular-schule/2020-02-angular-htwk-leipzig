@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Book } from '../shared/book';
 
 @Component({
@@ -9,11 +9,20 @@ import { Book } from '../shared/book';
 export class BookComponent implements OnInit {
 
   @Input() book: Book;
-  foo: string;
+  @Output() rateUp = new EventEmitter<Book>();
+  @Output() rateDown = new EventEmitter<Book>();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  doRateUp() {
+    this.rateUp.emit(this.book);
+  }
+
+  doRateDown() {
+    this.rateDown.emit(this.book);
   }
 
 }
