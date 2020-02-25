@@ -1,1 +1,5 @@
-{{ books }}
+<br-book *ngFor="let b of books" [book]="b"></br-book>
+
+
+<strong>Anzahl Bücher:</strong> {{ books.length ? books.length : 'Nö' }}
+
