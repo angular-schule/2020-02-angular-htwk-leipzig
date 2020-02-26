@@ -1,13 +1,17 @@
-<br-book
-  *ngFor="let b of books"
-  (rateUp)="onRateUp($event)"
-  (rateDown)="onRateDown($event)"
-  [book]="b"></br-book>
+<ng-container *ngIf="books">
 
-<strong>Anzahl Bücher:</strong> {{ books.length }}
+  <br-book
+    *ngFor="let b of books"
+    (rateUp)="onRateUp($event)"
+    (rateDown)="onRateDown($event)"
+    [book]="b"></br-book>
 
-<button type="button" (click)="isVisible = !isVisible">Toggle</button>
-<div *ngIf="isVisible">
-  Ist sichtbar!
-</div>
+  <strong>Anzahl Bücher:</strong> {{ books.length }}
+
+  <button type="button" (click)="isVisible = !isVisible">Toggle</button>
+  <div *ngIf="isVisible">
+    Ist sichtbar!
+  </div>
+
+</ng-container>
 
