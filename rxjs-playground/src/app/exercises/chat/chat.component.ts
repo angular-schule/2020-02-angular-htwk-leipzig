@@ -32,6 +32,8 @@ export class ChatComponent implements OnInit {
      * - concat (Emit values from source 1, when complete, subscribe to source 2...)
      * - race (The observable to emit first is used.)
      * - forkJoin (When all observables complete, emit the last emitted value from each.)
+     * - zip
+     * - combineLatest
      */
 
 

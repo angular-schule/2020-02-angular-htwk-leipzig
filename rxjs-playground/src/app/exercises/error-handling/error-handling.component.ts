@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Subject, throwError, of } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { Subject, throwError, of, interval, EMPTY, from } from 'rxjs';
+import { retry, catchError, retryWhen, take } from 'rxjs/operators';
 
 import { ExerciseService } from '../exercise.service';
 
@@ -15,7 +15,14 @@ export class ErrorHandlingComponent {
   constructor(private es: ExerciseService) { }
 
   start() {
-    this.es.randomError().pipe().subscribe(
+    this.es.randomError().pipe(
+      catchError(err => {
+        // return throwError('FEHLER');
+        // return of(':-)');
+        // return EMPTY;
+        return from([1,2,3]);
+      })
+    ).subscribe(
       value => this.logStream$.next(value),
       err => this.logStream$.next('💥 ERROR: ' + err)
     );

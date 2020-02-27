@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Book } from '../shared/book';
 import { BookStoreService } from '../shared/book-store.service';
+import { map, concatMap, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'br-book-details',
@@ -11,6 +13,7 @@ import { BookStoreService } from '../shared/book-store.service';
 export class BookDetailsComponent implements OnInit {
 
   book: Book;
+  book$: Observable<Book>;
 
   constructor(private route: ActivatedRoute, private bs: BookStoreService) { }
 
@@ -18,11 +21,11 @@ export class BookDetailsComponent implements OnInit {
     // const isbn = this.route.snapshot.paramMap.get('isbn');
 
     // TODO: Verschachtelte Subscription auflösen
-    this.route.paramMap.subscribe(params => {
-      const isbn = params.get('isbn');
-      this.bs.getSingle(isbn).subscribe(book => this.book = book);
-    });
-
+    // import { map } from 'rxjs/operators';
+    this.book$ = this.route.paramMap.pipe(
+      map(params => params.get('isbn')),
+      switchMap(isbn => this.bs.getSingle(isbn))
+    );
 
   }
 

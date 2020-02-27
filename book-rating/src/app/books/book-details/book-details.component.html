@@ -1,7 +1,7 @@
-<ng-container *ngIf="book">
-  <h2>{{ book.title }}</h2>
+<ng-container *ngIf="book$ | async as bookX">
+  <h2>{{ bookX.title }}</h2>
   <p>
-    {{ book.description }}
+    {{ bookX.description }}
   </p>
 </ng-container>
 
