@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-4">
+    <rxw-chat-window name="Julia" (message)="msgRaw.julia$.next($event)" (leave)="msgRaw.julia$.complete()"></rxw-chat-window>
+  </div>
+  <div class="col-4">
+      <rxw-chat-window name="Georg" (message)="msgRaw.georg$.next($event)" (leave)="msgRaw.georg$.complete()"></rxw-chat-window>
+  </div>
+  <div class="col-4">
+      <rxw-chat-window name="John" (message)="msgRaw.john$.next($event)" (leave)="msgRaw.john$.complete()"></rxw-chat-window>
+  </div>
+</div>
+
+
+<rxw-history [logStream]="logStream$" class="mt-3"></rxw-history>
